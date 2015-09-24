@@ -8,7 +8,7 @@ public class playerMove : MonoBehaviour {
 	private int currentScore = 0;
 	public Text scoreTextUI;
 	private Vector2 myScreenPosition;
-	private int countdown = 10;
+	private float countdown = 10;
 	private bool isPlayerAlive = true;
 	// Use this for initialization
 	void Start () {
@@ -31,9 +31,10 @@ public class playerMove : MonoBehaviour {
 
 			playerRigidbody.AddForce(tempForce);
 		}
-		if(isPlayerAlive){
+		if (isPlayerAlive) {
 			checkPlayerPosition ();
 		};
+
 
 	}
 	void countdownDec(){
@@ -70,9 +71,9 @@ public class playerMove : MonoBehaviour {
 //		InvokeRepeating ("countdownDec", 1, 1);
 		isPlayerAlive = false;
 		scoreTextUI.text = "Game Over";
-//		if (countdown == 0) {
-			Application.LoadLevel (Application.loadedLevel);	
-//		};
-//		Application.LoadLevel (Application.loadedLevel);
+		GameOver ();
+	}
+	void GameOver(){
+		Application.LoadLevel (Application.loadedLevel);
 	}
 }
