@@ -7,10 +7,14 @@ public class playerMove : MonoBehaviour {
 	private Rigidbody2D playerRigidbody;
 	private int currentScore = 0;
 	public Text scoreTextUI;
-
+	private Vector2 myScreenPosition;
+	private int countdown = 10;
+	private bool isPlayerAlive = true;
 	// Use this for initialization
 	void Start () {
+		isPlayerAlive = true;
 		currentScore = 0;
+		countdown = 10;
 		scoreTextUI.text = "Score: " + currentScore;
 
 		playerRigidbody = this.gameObject.GetComponent<Rigidbody2D> ();
@@ -27,14 +31,22 @@ public class playerMove : MonoBehaviour {
 
 			playerRigidbody.AddForce(tempForce);
 		}
+		if(isPlayerAlive){
+			checkPlayerPosition ();
+		};
+
+	}
+	void countdownDec(){
+//		InvokeRepeating ("countdownDec", 1, 10);
+//		scoreTextUI.text = countdown.ToString();
+		countdown--;
 	}
 
 	void OnCollisionEnter2D(Collision2D thingIAmCollidingWith){
-
+//		
 		if (thingIAmCollidingWith.gameObject.tag == "obstacle") {
-
-			print(thingIAmCollidingWith.gameObject.tag);
-			Application.LoadLevel (Application.loadedLevel);
+//			print(thingIAmCollidingWith.gameObject.tag);
+			Die();
 		};
 	
 	}
@@ -46,5 +58,21 @@ public class playerMove : MonoBehaviour {
 			print("Got Money! Now I have " +  currentScore);
 			Destroy(thingIAmCollidingWith.gameObject);
 		};
+	}
+	void checkPlayerPosition () {
+		myScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
+
+		if (myScreenPosition.y > Screen.height || myScreenPosition.y < 0) {
+			Die();
+		};
+	}
+	void Die(){
+//		InvokeRepeating ("countdownDec", 1, 1);
+		isPlayerAlive = false;
+		scoreTextUI.text = "Game Over";
+//		if (countdown == 0) {
+			Application.LoadLevel (Application.loadedLevel);	
+//		};
+//		Application.LoadLevel (Application.loadedLevel);
 	}
 }
