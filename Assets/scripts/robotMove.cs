@@ -47,4 +47,18 @@ public class robotMove : MonoBehaviour {
 	void GameOver(){
 		Application.LoadLevel (Application.loadedLevel);
 	}
+	void OnCollisionEnter2D(Collision2D thingIAmCollidingWith){
+		//		
+		if (thingIAmCollidingWith.gameObject.tag == "obstacle") {
+			//			print(thingIAmCollidingWith.gameObject.tag);
+			Die();
+		};
+		
+	}
+	void OnTriggerEnter2D(Collider2D thingIAmCollidingWith){
+		if (thingIAmCollidingWith.gameObject.tag == "saw") {
+			Die();
+		};
+
+	}
 }
