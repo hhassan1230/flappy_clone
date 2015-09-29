@@ -56,7 +56,7 @@ public class robotMove : MonoBehaviour {
 		
 	}
 	void OnTriggerEnter2D(Collider2D thingIAmCollidingWith){
-		if (thingIAmCollidingWith.gameObject.tag == "saw") {
+		if (thingIAmCollidingWith.gameObject.tag == "saw" || thingIAmCollidingWith.gameObject.tag == "bullet") {
 			Die();
 		};
 
