@@ -19,8 +19,6 @@ public class robotMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("space")) {
-			print("I AM SPACEBAR");
-			
 			playerRigidbody.velocity = new Vector2(0,0);
 			
 			Vector2 tempForce = new Vector2(0,200);
