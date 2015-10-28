@@ -9,15 +9,15 @@ public class obstacle : MonoBehaviour {
 	void Start () {
 		playerRigidbody = this.gameObject.GetComponent<Rigidbody2D> ();
 
-
+		Vector2 tempVelocity = new Vector2(obstacleMoveX, 0);
+		playerRigidbody.velocity = (tempVelocity);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 //		transform.rotation = Quaternion.identity;
 
-		Vector2 tempVelocity = new Vector2(obstacleMoveX, 0);
-		playerRigidbody.velocity = (tempVelocity);
+
 
 	}
 
